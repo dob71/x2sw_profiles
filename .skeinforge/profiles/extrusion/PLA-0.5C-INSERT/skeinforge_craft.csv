@@ -12,7 +12,7 @@ clip	False
 coil	False
 comb	False
 cool	False
-dimension	False
+dimension	True
 drill	False
 export	False
 feed	False
@@ -34,7 +34,7 @@ preface	False
 raft	False
 scale	False
 skin	False
-skirt	True
+skirt	False
 speed	False
 splodge	False
 stretch	False
