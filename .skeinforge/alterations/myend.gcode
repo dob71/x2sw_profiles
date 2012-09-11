@@ -1,0 +1,8 @@
+(Beginning of end.txt)
+M109 S50 T0 (set HBP temperature)
+G1 X0 Y40 F2500.0 (move platform to ejection position)
+M102 (Extruder on, reverse)
+G04 P2000 (Wait t/1000 seconds)
+M103 (Extruder off)
+M104 S90 T0 (set extruder temperature)
+(end of end.txt)
