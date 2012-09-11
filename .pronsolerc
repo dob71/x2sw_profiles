@@ -1,0 +1,88 @@
+# .pronsolerc file for X2
+!print "Loaded " + self.rc_filename
+!global _extruder
+!_extruder = 0
+
+set port COM18
+set xy_feedrate 3000
+set z_feedrate 300
+set e_feedrate 100
+set last_temperature 0.0
+set last_bed_temperature 0.0
+set temperature_abs 215.0
+set bed_size_y 191.0
+set bedtemp_abs 115.0
+set bed_size_x 197.0
+set temperature_pla 175
+set bedtemp_pla 80.0
+
+macro onConnect
+  !_extruder = 0
+  !self.onecmd('button 0 "Ext 0" /c green extruder0')
+  !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
+
+macro onDisconnect
+  !_extruder = 0
+  !self.onecmd('button 0 "Ext 0" /c lightgrey extruder0')
+  !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
+
+macro onReset
+  !_extruder = 0
+  !self.onecmd('button 0 "Ext 0" /c lightgrey extruder0')
+  !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
+
+macro extruder0
+  T0
+  !_extruder = 0
+  !if hasattr(self,"cur_button") and self.cur_button is not None: 
+   !self.onecmd('button %d "Ext 0" /c green extruder0' % self.cur_button)
+   !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
+button 0 "Ext 0" /c "lightgrey" extruder0
+
+macro extruder1
+  T1
+  !_extruder = 1
+  !if hasattr(self,"cur_button") and self.cur_button is not None: 
+   !self.onecmd('button %d "Ext 1" /c green extruder1' % self.cur_button)
+   !self.onecmd('button 0 "Ext 0" /c lightgrey extruder0')
+button 1 "Ext 1" /c "lightgrey" extruder1
+
+macro fanoff
+   M107
+button 4 "fan off" /c "lightgrey" fanoff
+
+macro fan70
+   M106
+   !time.sleep(1.0)
+   M106 S100
+button 5 "fan 50%" /c "lightgrey" fan70
+
+macro fan100
+   M106
+   !time.sleep(1.0)
+   M106 S200
+button 6 "fan 100%" /c "lightgrey" fan100
+
+macro resetSD
+   M22
+   !time.sleep(0.2)
+   M21
+   !time.sleep(0.2)
+   M20
+button 7 "ResetSD" /c "lightgrey" resetSD
+
+macro x2Merge
+   !try:
+   !    from X2MergeDialog import X2MergeDialog
+   !    dlg = X2MergeDialog(self)
+   !    res = dlg.ShowModal()
+   !    if (res == 1):
+   !         self.loadfile(None, filename=dlg.GetPath())
+   !    if (res == 2):
+   !         self.status.SetStatusText(_("The merge has failed!"))
+   !except:
+   !    self.status.SetStatusText(_("The merge cannot be completed!"))
+   !    pass
+button 8 "X2Merge" /c "lightgrey" x2Merge
+
+set last_file_path T:\Job\3DPrint\STLs\calibration

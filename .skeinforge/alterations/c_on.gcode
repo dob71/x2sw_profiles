@@ -1,0 +1,5 @@
+G91 ;(switch to relative positioning)
+G1 E-12 F2000 ;(retract for long pause at feed rate 20mm/min)
+G90 ;(Back to absolute positioning)
+T1 ;(switch to color extruder)
+;(do not do anything since retract return will restore the filament position)
