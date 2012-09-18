@@ -1,6 +1,15 @@
 # .pronsolerc file for X2
 !print "Loaded " + self.rc_filename
 !self._extruder = 0
+!self.sf_slicecommand="python skeinforge/skeinforge_application/skeinforge_utilities/skeinforge_craft.py $s"
+!self.sf_sliceoptscommand="python skeinforge/skeinforge_application/skeinforge.py"
+!self.slic3rcmd = os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r')
+!if os.path.exists(os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r.pl')): self.slic3rcmd = 'perl ' + os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r.pl')
+!self.slic3r_slicecommand=self.slic3rcmd + " $s --output $o"
+!self.slic3r_sliceoptscommand=self.slic3rcmd
+!self.settings.slicecommand = self.sf_slicecommand
+!self.settings.sliceoptscommand = self.sf_sliceoptscommand
+!self.slicemode = 'sf'
 
 set port COM2
 set xy_feedrate 3000
@@ -36,13 +45,13 @@ macro extruder1
 
 macro onSetExt0
   !self._extruder = 0
-  !self.onecmd('button %d "Ext 0" /c green extruder0' % 0)
+  !self.onecmd('button 0 "Ext 0" /c green extruder0')
   !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
 button 0 "Ext 0" /c "lightgrey" extruder0
 
 macro onSetExt1
   !self._extruder = 1
-  !self.onecmd('button %d "Ext 1" /c green extruder1' % 1)
+  !self.onecmd('button 1 "Ext 1" /c green extruder1')
   !self.onecmd('button 0 "Ext 0" /c lightgrey extruder0')
 button 1 "Ext 1" /c "lightgrey" extruder1
 
@@ -83,6 +92,25 @@ macro x2Merge
    !    self.status.SetStatusText(_("The merge cannot be completed!"))
    !    pass
 button 8 "X2Merge" /c "lightgrey" x2Merge
+
+macro changeSkeiner
+   !try:
+   !  if self.slicemode == 'sf':
+   !    self.onecmd('button 9 "Use Skeinforge" /c lightgrey changeSkeiner')
+   !    self.slicemode = 'slic3r'
+   !    self.settings.slicecommand = self.slic3r_slicecommand
+   !    self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
+   !    self.status.SetStatusText(_("Switched to Skeinforge"))
+   !  else:
+   !    self.onecmd('button 9 "Use Slic3r" /c lightgrey changeSkeiner')
+   !    self.slicemode = 'sf'
+   !    self.settings.slicecommand = self.sf_slicecommand
+   !    self.settings.sliceoptscommand = self.sf_sliceoptscommand
+   !    self.status.SetStatusText(_("Switched to Slic3r"))
+   !except:
+   !  self.status.SetStatusText(_("Failed to change skeiner!"))
+   !  pass
+button 9 "Use Slic3r" /c "lightgrey" changeSkeiner
 
 set last_file_path T:\Job\3DPrint\STLs\calibration
 set build_dimensions 200x200x125
