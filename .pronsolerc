@@ -100,13 +100,13 @@ macro changeSkeiner
    !    self.slicemode = 'slic3r'
    !    self.settings.slicecommand = self.slic3r_slicecommand
    !    self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
-   !    self.status.SetStatusText(_("Switched to Skeinforge"))
+   !    self.status.SetStatusText(_("Switched to Slic3r"))
    !  else:
    !    self.onecmd('button 9 "Use Slic3r" /c lightgrey changeSkeiner')
    !    self.slicemode = 'sf'
    !    self.settings.slicecommand = self.sf_slicecommand
    !    self.settings.sliceoptscommand = self.sf_sliceoptscommand
-   !    self.status.SetStatusText(_("Switched to Slic3r"))
+   !    self.status.SetStatusText(_("Switched to Skeinforge"))
    !except:
    !  self.status.SetStatusText(_("Failed to change skeiner!"))
    !  pass
