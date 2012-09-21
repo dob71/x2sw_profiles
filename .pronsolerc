@@ -13,7 +13,6 @@
 !self.settings.sliceoptscommand = self.sf_sliceoptscommand
 !self.slicemode = 'sf'
 
-set port COM2
 set xy_feedrate 3000
 set z_feedrate 300
 set e_feedrate 100
