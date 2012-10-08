@@ -2,7 +2,7 @@
 !print "Loaded " + self.rc_filename
 # Multiple extruder init
 !self._extruder = 0
-# Support bith SF and Slic3r skeiners
+# Support both SF and Slic3r skeiners
 !self.sf_slicecommand="python skeinforge/skeinforge_application/skeinforge_utilities/skeinforge_craft.py $s"
 !self.sf_sliceoptscommand="python skeinforge/skeinforge_application/skeinforge.py"
 !self.slic3rcmd = os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r')
