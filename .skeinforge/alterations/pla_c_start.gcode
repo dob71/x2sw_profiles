@@ -4,7 +4,7 @@ T0  ;(select the base extruder)
 G21 ;(set units to mm)
 G90 ;(set positioning to absolute)
 G28 ;(home all axis)
-G1 Z0.2 F300 ;(adjustment for the warping of the bed)
+G1 Z0.0 F300 ;(adjustment for the warping of the bed)
 G92 Z0 ;(set the z level of homing)
 G1 Z10 X1 Y10 F1500 ;(move up and sideways to allow extruder change moves)
 
