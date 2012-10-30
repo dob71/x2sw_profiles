@@ -55,7 +55,7 @@ macro onSetExt1
   !self._extruder = 1
   !self.onecmd('button 1 "Ext 1" /c green extruder1')
   !self.onecmd('button 0 "Ext 0" /c lightgrey extruder0')
-button 1 "Ext 1" /c "green" extruder1
+button 1 "Ext 1" /c "lightgrey" extruder1
 
 macro fanoff
    M107
