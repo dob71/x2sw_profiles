@@ -10,8 +10,8 @@ M109 ;(wait for extruder)
 M190 ;(wait for bed)
 G92 E0 ;(reset extruder to 0)
 G1 F100 ;(set feed rate to 60mm/min)
-G1 E12 ;(feed some plastic)
-G1 E7 F3200 ;(retract to prevent oozing in case filament is already there)
+G1 E15 ;(feed some plastic)
+G1 E10 F3200 ;(retract to prevent oozing in case filament is already there)
 G92 E0 ;(reset extruder to 0)
 ; Give me 10sec some to clean up the plastic
 G4 P10000 

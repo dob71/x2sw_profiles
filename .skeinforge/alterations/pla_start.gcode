@@ -16,8 +16,8 @@ M190 ;(wait for bed)
 G1 X25 Y2 Z10 F1500 ;(move up a bit)
 G92 E0 ;(reset extruder to 0)
 G1 F100 ;(set feed rate to 60mm/min)
-G1 E12  ;(feed some plastic)
-G1 E6 F3200 ;(retract)
+G1 E15  ;(feed some plastic)
+G1 E9 F3200 ;(retract)
 G92 E0 ;(reset extruder to 0)
 ; Give me 10sec some to clean up the plastic
 G4 P10000 

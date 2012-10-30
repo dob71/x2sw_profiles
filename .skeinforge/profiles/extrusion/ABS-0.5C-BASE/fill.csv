@@ -3,11 +3,11 @@ _Name                          	Value
 WindowPosition	700+0
 Open File for Fill	
 Activate Fill	True
-Diaphragm Period (layers):	60
+Diaphragm Period (layers):	10000
 Diaphragm Thickness (layers):	0
-Extra Shells on Alternating Solid Layer (layers):	1
-Extra Shells on Base (layers):	1
-Extra Shells on Sparse Layer (layers):	1
+Extra Shells on Alternating Solid Layer (layers):	2
+Extra Shells on Base (layers):	2
+Extra Shells on Sparse Layer (layers):	2
 Grid Circle Separation over Perimeter Width (ratio):	0.2
 Grid Extra Overlap (ratio):	0.1
 Grid Junction Separation Band Height (layers):	10
@@ -22,13 +22,14 @@ Grid Rectangular	False
 Line	False
 Infill Perimeter Overlap (ratio):	0.0
 Infill Solidity (ratio):	0.2
-Infill Width over Thickness (ratio):	1.6
-Solid Surface Thickness (layers):	3
-Lower Left	False
-Nearest	True
+Sharpest Angle (degrees):	60.0
+Solid Surface Thickness (layers):	4
+Lower Left	True
+Nearest	False
+Surrounding Angle (degrees):	60.0
 Infill > Loops > Perimeter	False
 Infill > Perimeter > Loops	False
 Loops > Infill > Perimeter	False
-Loops > Perimeter > Infill	False
+Loops > Perimeter > Infill	True
 Perimeter > Infill > Loops	False
-Perimeter > Loops > Infill	True
+Perimeter > Loops > Infill	False

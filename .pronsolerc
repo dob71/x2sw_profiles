@@ -16,9 +16,9 @@
 set xy_feedrate 3000
 set z_feedrate 300
 set e_feedrate 100
-set last_temperature 210.0
-set last_bed_temperature 115.0
-set temperature_abs 220
+set last_temperature 177.0
+set last_bed_temperature 78.0
+set temperature_abs 210
 set bedtemp_abs 115
 set temperature_pla 177
 set bedtemp_pla 78
@@ -55,7 +55,7 @@ macro onSetExt1
   !self._extruder = 1
   !self.onecmd('button 1 "Ext 1" /c green extruder1')
   !self.onecmd('button 0 "Ext 0" /c lightgrey extruder0')
-button 1 "Ext 1" /c "lightgrey" extruder1
+button 1 "Ext 1" /c "green" extruder1
 
 macro fanoff
    M107
@@ -114,5 +114,3 @@ macro changeSkeiner
    !  pass
 button 9 "Use Slic3r" /c "lightgrey" changeSkeiner
 
-set port COM2
-set last_file_path T:\Job\3DPrint\STLs\calibration

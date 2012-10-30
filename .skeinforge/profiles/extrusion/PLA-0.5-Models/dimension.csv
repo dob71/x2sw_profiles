@@ -8,6 +8,7 @@ Relative Extrusion Distance	False
 Extruder Retraction Speed (mm/s):	45.0
 Filament Diameter (mm):	2.85
 Filament Packing Density (ratio):	1.11
+Maximum E Value before Reset (float):	91234.0
 Minimum Travel for Retraction (millimeters):	3.0
 Retract Within Island	False
 Retraction Distance (millimeters):	6.0
