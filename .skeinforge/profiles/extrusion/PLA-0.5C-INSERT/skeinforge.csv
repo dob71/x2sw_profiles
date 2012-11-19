@@ -1,6 +1,6 @@
 Format is tab separated skeinforge settings.
 _Name                          	Value
-WindowPosition	455+24
+WindowPosition	468+123
 Open File for Skeinforge	T:/Job/3DPrint/STLs/calibration/20mm-box.stl
 analyze	False
 craft	True

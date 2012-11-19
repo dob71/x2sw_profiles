@@ -12,7 +12,7 @@ clip	False
 coil	False
 comb	False
 cool	False
-dimension	False
+dimension	True
 drill	False
 dwindle	False
 export	False
@@ -42,7 +42,7 @@ splodge	False
 stretch	False
 temperature	False
 tower	False
-unpause	True
+unpause	False
 whittle	False
 widen	False
 wipe	False
