@@ -9,9 +9,9 @@
 !if os.path.exists(os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r.pl')): self.slic3rcmd = 'perl ' + os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r.pl')
 !self.slic3r_slicecommand=self.slic3rcmd + " $s --output $o"
 !self.slic3r_sliceoptscommand=self.slic3rcmd
-!self.settings.slicecommand = self.sf_slicecommand
-!self.settings.sliceoptscommand = self.sf_sliceoptscommand
-!self.slicemode = 'sf'
+!self.settings.slicecommand = self.slic3r_slicecommand
+!self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
+!self.slicemode = 'slic3r'
 
 set xy_feedrate 3000
 set z_feedrate 300
