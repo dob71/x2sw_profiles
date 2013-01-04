@@ -7,7 +7,7 @@ M203 X500.00 Y500.00 Z7.00 E50.00
 ;Maximum Acceleration (mm/s2):
 M201 X3000 Y3000 Z100 E9000 
 ;Acceleration: S=acceleration, T=retract acceleration
-M204 S3000.00 T90000.00
+M204 S3000.00 T75000.00
 ;Advanced variables: S=Min feedrate (mm/s), T=Min travel feedrate (mm/s), B=minimum segment time (ms), X=maximum xY jerk (mm/s), Z=maximum Z jerk (mm/s), E=maximum E jerk (mm/s)
 M205 S0.00 T0.00 B20000 X20.00 Z0.40 E19.00
 ;Extruder offsets:
@@ -19,5 +19,5 @@ T1
 M92 E757.22
 M203 E50.00
 M201 E9000
-M204 T90000.00
+M204 T75000.00
 M205 E19.00
