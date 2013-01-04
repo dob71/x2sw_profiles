@@ -1,7 +1,7 @@
 ;RepRap X2 S/N: X2_0203
 T0
 ;Steps per unit:
-M92 X80.16 Y80.16 Z2260.00 E757.22
+M92 X80.16 Y80.16 Z2267.00 E757.22
 ;Maximum feedrates (mm/s):
 M203 X500.00 Y500.00 Z7.00 E50.00
 ;Maximum Acceleration (mm/s2):
@@ -21,3 +21,6 @@ M203 E50.00
 M201 E9000
 M204 T75000.00
 M205 E19.00
+;Uncomment to store in EEPROM
+;M500
+M503
