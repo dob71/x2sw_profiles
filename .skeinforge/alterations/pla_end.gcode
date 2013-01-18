@@ -1,4 +1,4 @@
-;(This file is for a My Prusa w/ Bowden mount)
+;(This file is for RepRap X2)
 ;(**** end initilization commands ****)
 G91 ;(switch to relative positioning)
 G1 F1200 ;(set feed rate to 20mm/min)

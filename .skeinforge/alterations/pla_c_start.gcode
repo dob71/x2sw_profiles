@@ -1,4 +1,4 @@
-;(This file is for a My Prusa w/ Bowden mount, PLA multicolor printing)
+;(This file is for RepRap X2, PLA multicolor printing)
 ;(**** begin initilization commands ****)
 T0  ;(select the base extruder)
 G21 ;(set units to mm)

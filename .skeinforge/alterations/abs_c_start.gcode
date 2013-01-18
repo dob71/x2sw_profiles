@@ -1,4 +1,4 @@
-;(This file is for a My Prusa w/ Bowden mount, ABS multicolor printing)
+;(This file is for RepRap X2, ABS multicolor printing)
 ;(**** begin initilization commands ****)
 T0  ;(select the base extruder)
 G21 ;(set units to mm)

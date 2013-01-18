@@ -1,4 +1,4 @@
-;(This file is for a My Prusa w/ Bowden mount)
+;(This file is for RepRap X2)
 ;(**** begin initilization commands ****)
 G21 ;(set units to mm)
 G90 ;(set positioning to absolute)
