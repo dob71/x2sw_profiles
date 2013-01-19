@@ -16,9 +16,9 @@
 set xy_feedrate 3000
 set z_feedrate 300
 set e_feedrate 100
-set last_temperature 175.0
+set last_temperature 177.0
 set last_bed_temperature 78.0
-set temperature_abs 210
+set temperature_abs 215
 set bedtemp_abs 115
 set temperature_pla 177
 set bedtemp_pla 78
@@ -95,22 +95,28 @@ macro x2Merge
    !    pass
 button 8 "X2Merge" /c "lightgrey" x2Merge
 
-macro changeSkeiner
+macro useSkeinforge
    !try:
-   !  if self.slicemode == 'sf':
-   !    self.onecmd('button 9 "Use Skeinforge" /c lightgrey changeSkeiner')
-   !    self.slicemode = 'slic3r'
-   !    self.settings.slicecommand = self.slic3r_slicecommand
-   !    self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
-   !    self.status.SetStatusText(_("Switched to Slic3r"))
-   !  else:
-   !    self.onecmd('button 9 "Use Slic3r" /c lightgrey changeSkeiner')
-   !    self.slicemode = 'sf'
-   !    self.settings.slicecommand = self.sf_slicecommand
-   !    self.settings.sliceoptscommand = self.sf_sliceoptscommand
-   !    self.status.SetStatusText(_("Switched to Skeinforge"))
+   !  self.slicemode = 'sf'
+   !  self.settings.slicecommand = self.sf_slicecommand
+   !  self.settings.sliceoptscommand = self.sf_sliceoptscommand
+   !  self.status.SetStatusText(_("Switched to Skeinforge"))
+   !  self.onecmd('button 11 "Slic3r" /c lightgrey useSlic3r')
+   !  self.onecmd('button 10 "Skeinforge" /c green useSkeinforge')
    !except:
    !  self.status.SetStatusText(_("Failed to change skeiner!"))
    !  pass
-button 9 "Use Skeinforge" /c "lightgrey" changeSkeiner
+button 10 "Skeinforge" /c "lightgrey" useSkeinforge
 
+macro useSlic3r
+   !try:
+   !  self.slicemode = 'slic3r'
+   !  self.settings.slicecommand = self.slic3r_slicecommand
+   !  self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
+   !  self.status.SetStatusText(_("Switched to Slic3r"))
+   !  self.onecmd('button 10 "Skeinforge" /c lightgrey useSkeinforge')
+   !  self.onecmd('button 11 "Slic3r" /c green useSlic3r')
+   !except:
+   !  self.status.SetStatusText(_("Failed to change skeiner!"))
+   !  pass
+button 11 "Slic3r" /c "green" useSlic3r
