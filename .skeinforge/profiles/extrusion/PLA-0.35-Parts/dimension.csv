@@ -1,0 +1,16 @@
+Format is tab separated dimension settings.
+_Name                          	Value
+WindowPosition	700+0
+Open File for Dimension	
+Activate Dimension	True
+Absolute Extrusion Distance	True
+Relative Extrusion Distance	False
+Extruder Retraction Speed (mm/s):	45.0
+Filament Diameter (mm):	2.91
+Filament Packing Density (ratio):	1.02
+Maximum E Value before Reset (float):	91234.0
+Minimum Travel for Retraction (millimeters):	5.0
+Retract Within Island	False
+Retract On Layer Change	False
+Retraction Distance (millimeters):	6.0
+Restart Extra Distance (millimeters):	0.0
