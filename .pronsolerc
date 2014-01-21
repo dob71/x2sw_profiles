@@ -24,6 +24,39 @@ set temperature_pla 177
 set bedtemp_pla 78
 set build_dimensions 200x200x125
 
+macro onConnect
+  !self._extruder = 0
+  !self.onecmd('button 0 "Ext 0" /c green extruder0')
+  !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
+
+macro onDisconnect
+  !self._extruder = 0
+  !self.onecmd('button 0 "Ext 0" /c lightgrey extruder0')
+  !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
+
+macro onReset
+  !self._extruder = 0
+  !self.onecmd('button 0 "Ext 0" /c lightgrey extruder0')
+  !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
+
+macro extruder0
+  T0
+
+macro extruder1
+  T1
+
+macro onSetExt0
+  !self._extruder = 0
+  !self.onecmd('button 0 "Ext 0" /c green extruder0')
+  !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
+button 0 "Ext 0" /c "lightgrey" extruder0
+
+macro onSetExt1
+  !self._extruder = 1
+  !self.onecmd('button 1 "Ext 1" /c green extruder1')
+  !self.onecmd('button 0 "Ext 0" /c lightgrey extruder0')
+button 1 "Ext 1" /c "lightgrey" extruder1
+
 macro fanoff
    M107
 button 4 "fan off" /c "lightgrey" fanoff
@@ -46,18 +79,32 @@ macro resetSD
    M21
    !time.sleep(0.2)
    M20
-button 1 "ResetSD" /c "lightgrey" resetSD
+button 7 "ResetSD" /c "lightgrey" resetSD
+
+macro x2Merge
+   !try:
+   !    from X2MergeDialog import X2MergeDialog
+   !    dlg = X2MergeDialog(self)
+   !    res = dlg.ShowModal()
+   !    if (res == 1):
+   !         self.loadfile(None, filename=dlg.GetPath())
+   !    if (res == 2):
+   !         self.status.SetStatusText(_("The merge has failed!"))
+   !except:
+   !    self.status.SetStatusText(_("The merge cannot be completed!"))
+   !    pass
+button 8 "X2Merge" /c "lightgrey" x2Merge
 
 macro changeSkeiner
    !try:
    !  if self.slicemode == 'sf':
-   !    self.onecmd('button 2 "Use Skeinforge" /c lightgrey changeSkeiner')
+   !    self.onecmd('button 9 "Use Skeinforge" /c lightgrey changeSkeiner')
    !    self.slicemode = 'slic3r'
    !    self.settings.slicecommand = self.slic3r_slicecommand
    !    self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
    !    self.status.SetStatusText(_("Switched to Slic3r"))
    !  else:
-   !    self.onecmd('button 2 "Use Slic3r" /c lightgrey changeSkeiner')
+   !    self.onecmd('button 9 "Use Slic3r" /c lightgrey changeSkeiner')
    !    self.slicemode = 'sf'
    !    self.settings.slicecommand = self.sf_slicecommand
    !    self.settings.sliceoptscommand = self.sf_sliceoptscommand
@@ -65,6 +112,5 @@ macro changeSkeiner
    !except:
    !  self.status.SetStatusText(_("Failed to change skeiner!"))
    !  pass
-button 2 "Use Slic3r" /c "lightgrey" changeSkeiner
+button 9 "Use Slic3r" /c "lightgrey" changeSkeiner
 
-set last_file_path /home/den/Downloads
