@@ -11,7 +11,7 @@ M332 S2 X1 Y0 Z0 E0 F8000 ;(move X back to parking fast)
 M104 S0 ;(turn off the extruder)
 
 T1 ;(select secondary extruder)
-M332 S3 X1 Y0 Z0 E0 F8000 ;(move X back to parking fast)
+G28 X ;(move X back to parking, has to be homeing since we lost current X)
 M104 S0 ;(turn off the extruder)
 
 M140 S0 ;(cool down the bed)
