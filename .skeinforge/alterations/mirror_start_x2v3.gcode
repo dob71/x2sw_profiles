@@ -46,5 +46,5 @@ T1
 G1 X200 F6000 ;(position extruder 1)
 T0
 G1 X0 F6000 ;(position extruder 0)
-M322 T1 S1 M1 ;(turn on follow mode w/ mirror for extruder 1)
+M322 T1 S1 R1 ;(turn on follow mode w/ mirror for extruder 1)
 
