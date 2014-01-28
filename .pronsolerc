@@ -9,9 +9,9 @@
 !if os.path.exists(os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r.pl')): self.slic3rcmd = 'perl ' + os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r.pl')
 !self.slic3r_slicecommand=self.slic3rcmd + " $s --output $o"
 !self.slic3r_sliceoptscommand=self.slic3rcmd
-!self.settings.slicecommand = self.slic3r_slicecommand
-!self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
-!self.slicemode = 'slic3r'
+!self.settings.slicecommand = self.sf_slicecommand
+!self.settings.sliceoptscommand = self.sf_sliceoptscommand
+!self.slicemode = 'sf'
 
 set xy_feedrate 3000
 set z_feedrate 300
@@ -106,7 +106,7 @@ macro useSkeinforge
    !except:
    !  self.status.SetStatusText(_("Failed to change skeiner!"))
    !  pass
-button 10 "Skeinforge" /c "lightgrey" useSkeinforge
+button 10 "Skeinforge" /c "green" useSkeinforge
 
 macro useSlic3r
    !try:
@@ -119,4 +119,4 @@ macro useSlic3r
    !except:
    !  self.status.SetStatusText(_("Failed to change skeiner!"))
    !  pass
-button 11 "Slic3r" /c "green" useSlic3r
+button 11 "Slic3r" /c "lightgrey" useSlic3r
