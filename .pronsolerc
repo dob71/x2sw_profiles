@@ -9,9 +9,9 @@
 !if os.path.exists(os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r.pl')): self.slic3rcmd = 'perl ' + os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r.pl')
 !self.slic3r_slicecommand=self.slic3rcmd + " $s --output $o"
 !self.slic3r_sliceoptscommand=self.slic3rcmd
-!self.settings.slicecommand = self.sf_slicecommand
-!self.settings.sliceoptscommand = self.sf_sliceoptscommand
-!self.slicemode = 'sf'
+!self.settings.slicecommand = self.slic3r_slicecommand
+!self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
+!self.slicemode = 'slic3r'
 
 set xy_feedrate 3000
 set z_feedrate 300
@@ -95,22 +95,28 @@ macro x2Merge
    !    pass
 button 8 "X2Merge" /c "lightgrey" x2Merge
 
-macro changeSkeiner
+macro useSkeinforge
    !try:
-   !  if self.slicemode == 'sf':
-   !    self.onecmd('button 9 "Use Skeinforge" /c lightgrey changeSkeiner')
-   !    self.slicemode = 'slic3r'
-   !    self.settings.slicecommand = self.slic3r_slicecommand
-   !    self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
-   !    self.status.SetStatusText(_("Switched to Slic3r"))
-   !  else:
-   !    self.onecmd('button 9 "Use Slic3r" /c lightgrey changeSkeiner')
-   !    self.slicemode = 'sf'
-   !    self.settings.slicecommand = self.sf_slicecommand
-   !    self.settings.sliceoptscommand = self.sf_sliceoptscommand
-   !    self.status.SetStatusText(_("Switched to Skeinforge"))
+   !  self.slicemode = 'sf'
+   !  self.settings.slicecommand = self.sf_slicecommand
+   !  self.settings.sliceoptscommand = self.sf_sliceoptscommand
+   !  self.status.SetStatusText(_("Switched to Skeinforge"))
+   !  self.onecmd('button 11 "Slic3r" /c lightgrey useSlic3r')
+   !  self.onecmd('button 10 "Skeinforge" /c green useSkeinforge')
    !except:
    !  self.status.SetStatusText(_("Failed to change skeiner!"))
    !  pass
-button 9 "Use Slic3r" /c "lightgrey" changeSkeiner
+button 10 "Skeinforge" /c "lightgrey" useSkeinforge
 
+macro useSlic3r
+   !try:
+   !  self.slicemode = 'slic3r'
+   !  self.settings.slicecommand = self.slic3r_slicecommand
+   !  self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
+   !  self.status.SetStatusText(_("Switched to Slic3r"))
+   !  self.onecmd('button 10 "Skeinforge" /c lightgrey useSkeinforge')
+   !  self.onecmd('button 11 "Slic3r" /c green useSlic3r')
+   !except:
+   !  self.status.SetStatusText(_("Failed to change skeiner!"))
+   !  pass
+button 11 "Slic3r" /c "green" useSlic3r
