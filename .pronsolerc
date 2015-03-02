@@ -1,17 +1,94 @@
-# .pronsolerc file for X2
-!print "Loaded " + self.rc_filename
-# Multiple extruder init
-!self._extruder = 0
-# Support both SF and Slic3r skeiners
+# .pronsolerc file for X2V3
+
+# Support for both SF and Slic3r skeiners
 !self.sf_slicecommand="python skeinforge/skeinforge_application/skeinforge_utilities/skeinforge_craft.py $s"
 !self.sf_sliceoptscommand="python skeinforge/skeinforge_application/skeinforge.py"
 !self.slic3rcmd = os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r')
 !if os.path.exists(os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r.pl')): self.slic3rcmd = 'perl ' + os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'slic3r','slic3r.pl')
+!self.slic3r_platercommand=self.slic3rcmd + " --gui --output $o"
 !self.slic3r_slicecommand=self.slic3rcmd + " $s --output $o"
-!self.slic3r_sliceoptscommand=self.slic3rcmd
-!self.settings.slicecommand = self.sf_slicecommand
-!self.settings.sliceoptscommand = self.sf_sliceoptscommand
-!self.slicemode = 'sf'
+!self.slic3r_sliceoptscommand=self.slic3rcmd + " --no-plater"
+
+macro fanoff
+   M107
+
+macro fan70
+   M106
+   !time.sleep(1.0)
+   M106 S70
+
+macro fan120
+   M106
+   !time.sleep(1.0)
+   M106 S120
+
+macro fan255
+   M106
+
+macro x2Merge
+   !try:
+   !    from X2MergeDialog import X2MergeDialog
+   !    dlg = X2MergeDialog(self)
+   !    res = dlg.ShowModal()
+   !    if (res == 1):
+   !         self.loadfile(None, filename=dlg.GetPath())
+   !    if (res == 2):
+   !         self.log(_("The merge has failed!"))
+   !         self.statusbar.SetStatusText(_("The merge has failed!"))
+   !except:
+   !    self.log(_("The merge cannot be completed!"))
+   !    self.statusbar.SetStatusText(_("The merge cannot be completed!"))
+   !    pass
+
+macro s3rPlater
+   !try:
+   !    self.slice(None, self.slic3r_platercommand)
+   !except:
+   !    self.log(_("Failed to start the Slic3r plater!"))
+   !    self.statusbar.SetStatusText(_("Failed to start the Slic3r plater!"))
+   !    pass
+
+macro useSkeinforge
+   !try:
+   !  self.set("custom1", 0)
+   !  self.settings.slicecommand = self.sf_slicecommand
+   !  self.settings.sliceoptscommand = self.sf_sliceoptscommand
+   !  self.statusbar.SetStatusText(_("Switched to Skeinforge"))
+   !  self.onecmd('button 5 "Slic3r" /c lightgrey useSlic3r')
+   !  self.onecmd('button 6 "Skeinforge" /c green useSkeinforge')
+   !  self.onecmd('button 4 "X2Merge" /c lightgrey x2Merge')
+   !except:
+   !  self.statusbar.SetStatusText(_("Failed to change skeiner!"))
+   !  pass
+
+macro useSlic3r
+   !try:
+   !  self.set("custom1", 1)
+   !  self.settings.slicecommand = self.slic3r_slicecommand
+   !  self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
+   !  self.statusbar.SetStatusText(_("Switched to Slic3r"))
+   !  self.onecmd('button 6 "Skeinforge" /c lightgrey useSkeinforge')
+   !  self.onecmd('button 5 "Slic3r" /c green useSlic3r')
+   !  self.onecmd('button 4 "S3rPlater" /c lightgrey s3rPlater')
+   !except:
+   !  self.statusbar.SetStatusText(_("Failed to change skeiner!"))
+   !  pass
+
+macro onLoadUI
+   !try:
+   !  if self.settings.custom1 == 0:
+   !    self.settings.slicecommand = self.sf_slicecommand
+   !    self.settings.sliceoptscommand = self.sf_sliceoptscommand
+   !    self.onecmd('button 6 "Skeinforge" /c green useSkeinforge')
+   !    self.onecmd('button 4 "X2Merge" /c lightgrey x2Merge')
+   !  else:
+   !    self.settings.slicecommand = self.slic3r_slicecommand
+   !    self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
+   !    self.onecmd('button 5 "Slic3r" /c green useSlic3r')
+   !    self.onecmd('button 4 "S3rPlater" /c lightgrey s3rPlater')
+   !except:
+   !  self.statusbar.SetStatusText(_("Failed to set default skeiner!"))
+   !  pass
 
 set xy_feedrate 3000
 set z_feedrate 300
@@ -22,101 +99,27 @@ set temperature_abs 215
 set bedtemp_abs 115
 set temperature_pla 177
 set bedtemp_pla 78
-set build_dimensions 200x200x125
+set build_dimensions 200.00x200.00x125.00+0.00+0.00+0.00+0.00+0.00+0.00
 
-macro onConnect
-  !self._extruder = 0
-  !self.onecmd('button 0 "Ext 0" /c green extruder0')
-  !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
+set last_window_maximized False
+set last_window_width 1035
+set last_window_height 736
+set baudrate 115200
+set extruders 2
+set tempgauges True
+set lockbox True
+set last_sash_position 467
+set port COM3
+set monitor True
+set custom1 1
 
-macro onDisconnect
-  !self._extruder = 0
-  !self.onecmd('button 0 "Ext 0" /c lightgrey extruder0')
-  !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
+button 0 "Fan off" /c "lightgrey" fanoff
+button 1 "Fan 30%" /c "lightgrey" fan70
+button 2 "Fan 50%" /c "lightgrey" fan120
+button 3 "Fan 100%" /c "lightgrey" fan255
+button 4 "X2Merge" /c "lightgrey" x2Merge
+button 5 "Slic3r" /c "lightgrey" useSlic3r
+button 6 "Skeinforge" /c "lightgrey" useSkeinforge
 
-macro onReset
-  !self._extruder = 0
-  !self.onecmd('button 0 "Ext 0" /c lightgrey extruder0')
-  !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
-
-macro extruder0
-  T0
-
-macro extruder1
-  T1
-
-macro onSetExt0
-  !self._extruder = 0
-  !self.onecmd('button 0 "Ext 0" /c green extruder0')
-  !self.onecmd('button 1 "Ext 1" /c lightgrey extruder1')
-button 0 "Ext 0" /c "lightgrey" extruder0
-
-macro onSetExt1
-  !self._extruder = 1
-  !self.onecmd('button 1 "Ext 1" /c green extruder1')
-  !self.onecmd('button 0 "Ext 0" /c lightgrey extruder0')
-button 1 "Ext 1" /c "lightgrey" extruder1
-
-macro fanoff
-   M107
-button 4 "fan off" /c "lightgrey" fanoff
-
-macro fan70
-   M106
-   !time.sleep(1.0)
-   M106 S70
-button 5 "fan 50%" /c "lightgrey" fan70
-
-macro fan120
-   M106
-   !time.sleep(1.0)
-   M106 S120
-button 6 "fan 100%" /c "lightgrey" fan120
-
-macro resetSD
-   M22
-   !time.sleep(0.2)
-   M21
-   !time.sleep(0.2)
-   M20
-button 7 "ResetSD" /c "lightgrey" resetSD
-
-macro x2Merge
-   !try:
-   !    from X2MergeDialog import X2MergeDialog
-   !    dlg = X2MergeDialog(self)
-   !    res = dlg.ShowModal()
-   !    if (res == 1):
-   !         self.loadfile(None, filename=dlg.GetPath())
-   !    if (res == 2):
-   !         self.status.SetStatusText(_("The merge has failed!"))
-   !except:
-   !    self.status.SetStatusText(_("The merge cannot be completed!"))
-   !    pass
-button 8 "X2Merge" /c "lightgrey" x2Merge
-
-macro useSkeinforge
-   !try:
-   !  self.slicemode = 'sf'
-   !  self.settings.slicecommand = self.sf_slicecommand
-   !  self.settings.sliceoptscommand = self.sf_sliceoptscommand
-   !  self.status.SetStatusText(_("Switched to Skeinforge"))
-   !  self.onecmd('button 11 "Slic3r" /c lightgrey useSlic3r')
-   !  self.onecmd('button 10 "Skeinforge" /c green useSkeinforge')
-   !except:
-   !  self.status.SetStatusText(_("Failed to change skeiner!"))
-   !  pass
-button 10 "Skeinforge" /c "green" useSkeinforge
-
-macro useSlic3r
-   !try:
-   !  self.slicemode = 'slic3r'
-   !  self.settings.slicecommand = self.slic3r_slicecommand
-   !  self.settings.sliceoptscommand = self.slic3r_sliceoptscommand
-   !  self.status.SetStatusText(_("Switched to Slic3r"))
-   !  self.onecmd('button 10 "Skeinforge" /c lightgrey useSkeinforge')
-   !  self.onecmd('button 11 "Slic3r" /c green useSlic3r')
-   !except:
-   !  self.status.SetStatusText(_("Failed to change skeiner!"))
-   !  pass
-button 11 "Slic3r" /c "lightgrey" useSlic3r
+set last_file_path .
+set recentfiles []
