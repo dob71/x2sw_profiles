@@ -1,3 +1,4 @@
 *.bak
 *~bak
 *.~
+.compat_ver_str.txt
