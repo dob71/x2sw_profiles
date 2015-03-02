@@ -1,2 +1,2 @@
-set colorOn c_on.gcode
-set colorOff c_off.gcode
+set colorOn abs_c_on_x2v3.gcode
+set colorOff abs_c_off_x2v3.gcode
