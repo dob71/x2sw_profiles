@@ -95,9 +95,9 @@ set z_feedrate 300
 set e_feedrate 100
 set last_temperature 177.0
 set last_bed_temperature 78.0
-set temperature_abs 215
-set bedtemp_abs 115
-set temperature_pla 177
+set temperature_abs 220
+set bedtemp_abs 110
+set temperature_pla 183
 set bedtemp_pla 78
 set build_dimensions 200.00x200.00x125.00+0.00+0.00+0.00+0.00+0.00+0.00
 
@@ -109,7 +109,6 @@ set extruders 2
 set tempgauges True
 set lockbox True
 set last_sash_position 467
-set port COM3
 set monitor True
 set custom1 1
 
