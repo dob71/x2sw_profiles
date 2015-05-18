@@ -93,8 +93,8 @@ macro onLoadUI
 set xy_feedrate 3000
 set z_feedrate 300
 set e_feedrate 100
-set last_temperature 177.0
-set last_bed_temperature 78.0
+set last_temperature 225.0
+set last_bed_temperature 110.0
 set temperature_abs 220
 set bedtemp_abs 110
 set temperature_pla 183
@@ -110,7 +110,7 @@ set tempgauges False
 set lockbox True
 set last_sash_position 467
 set monitor True
-set custom1 1
+set custom1 0
 
 button 0 "Fan off" /c "lightgrey" fanoff
 button 1 "Fan 30%" /c "lightgrey" fan70
